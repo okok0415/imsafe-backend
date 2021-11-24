@@ -77,15 +77,18 @@ class UpdateView(APIView):
     def post(self, request):
         username = request.data["username"]
         user = User.objects.get(username=username)
-        
+
         serializer = UserSerializer(instance=user, data=request.data)
         if serializer.is_valid():
             serializer.save()
         return Response(serializer.data)
 
+
 class UpdateNameView(APIView):
     def post(self, request):
         username = request.data["username"]
-        User.objects.filter(username = username).update(name= request.data["name"], birth= request.data['birth'])
+        User.objects.filter(username=username).update(
+            name=request.data["name"], birth=request.data["birth"]
+        )
 
         return Response()
