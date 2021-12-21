@@ -10,7 +10,6 @@ from elders.MongoDBManager import MongoDBManager
 def all_users(request):
     def get():
         dbAlarmData = MongoDBManagerAlarm().get_users_from_collection({})
-        dbUserData = MongoDBManager().get_users_from_collection({})
         responseData = []
         for user in dbAlarmData:
             del user["_id"]
